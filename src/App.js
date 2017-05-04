@@ -4,8 +4,11 @@ import { ApolloProvider } from 'react-apollo';
 import { createLocalInterface } from 'apollo-local-query';
 import schema from './server/schema';
 import { execute } from 'graphql';
+import GraphiQL from 'graphiql';
+import gql from 'graphql-tag';
 
 import './App.css';
+import './graphiql.css';
 
 import PostList from './PostList';
 
@@ -15,6 +18,15 @@ class App extends Component {
 
     const localInterface = createLocalInterface({execute}, schema);
 
+    this.graphQLFetcher = function (graphQLParams) {
+      var parsedQuery = gql`${graphQLParams.query}`;
+
+      return localInterface.query({'query': parsedQuery}).then(function(response) {
+        console.log('promise response:', response);
+        return response;
+      });
+    }
+
     this.client = new ApolloClient({
       networkInterface: localInterface,
       dataIdFromObject: r => r.id,
@@ -23,7 +35,12 @@ class App extends Component {
   render() {
     return (
       <ApolloProvider client={this.client}>
-        <PostList />
+        <div>
+          <PostList />
+          <div style={{height:"700px"}}>
+            <GraphiQL fetcher={this.graphQLFetcher} />
+          </div>
+        </div>
       </ApolloProvider>
     );
   }
