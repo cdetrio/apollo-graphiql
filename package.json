@@ -12,10 +12,12 @@
     "react-scripts": "0.2.1"
   },
   "dependencies": {
+    "apollo-local-query": "0.3.0",
     "apollo-client": "^0.4.21",
-    "graphql": "^0.6.2",
+    "graphql": "^0.8.2",
+    "graphql-subscriptions": "^0.2.0",
     "graphql-tag": "0.1.11",
-    "graphql-tools": "^0.6.4",
+    "graphql-tools": "^0.8.0",
     "lodash": "^4.15.0",
     "react": "^15.2.1",
     "react-apollo": "^0.5.12",
