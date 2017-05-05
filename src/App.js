@@ -21,10 +21,7 @@ class App extends Component {
     this.graphQLFetcher = function (graphQLParams) {
       var parsedQuery = gql`${graphQLParams.query}`;
 
-      return localInterface.query({'query': parsedQuery}).then(function(response) {
-        console.log('promise response:', response);
-        return response;
-      });
+      return localInterface.query({'query': parsedQuery}).then(r => r);
     }
 
     this.client = new ApolloClient({
