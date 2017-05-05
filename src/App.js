@@ -12,6 +12,20 @@ import './graphiql.css';
 
 import PostList from './PostList';
 
+const defaultQuery =
+`query allPosts {
+  posts {
+    id
+    title
+    votes
+    author {
+      id
+      firstName
+      lastName
+    }
+  }
+}`;
+
 class App extends Component {
   constructor(...args) {
     super(...args);
@@ -35,7 +49,7 @@ class App extends Component {
         <div>
           <PostList />
           <div style={{height:"700px"}}>
-            <GraphiQL fetcher={this.graphQLFetcher} />
+            <GraphiQL fetcher={this.graphQLFetcher} query={defaultQuery} />
           </div>
         </div>
       </ApolloProvider>
