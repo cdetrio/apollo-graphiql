@@ -17,16 +17,10 @@ type Post {
   votes: Int
 }
 
-type BlockHead {
-  hash: String
-  number: Int
-}
-
 # the schema allows the following query:
 type Query {
   posts: [Post]
   author(id: Int!): Author
-  blockHead: BlockHead
 }
 
 # this schema allows the following mutation:
